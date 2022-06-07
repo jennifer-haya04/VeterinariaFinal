@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h3>.</h3>
+<h2>Nuevo Usuario</h2>
+
+<form class="form-horizontal">
+    <div class="form-group">
+        <label for="Login" class="col-sm-2 control-label">Login:</label>
+        <div class="col-sm-10"><input type="text" class="form-control" id="login"></div>
+
+    </div>
+
+    <div class="form-group">
+        <label for="password" class="col-sm-2 control-label">Password:</label>
+        <div class="col-sm-10"><input type="password" class="form-control" id="password"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="nombre" class="col-sm-2 control-label">Nombre:</label>
+        <div class="col-sm-10"><input type="text" class="form-control" id="nombre"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="apellido" class="col-sm-2 control-label">Apellido:</label>
+        <div class="col-sm-10"><input type="text" class="form-control" id="apellido"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="direccion" class="col-sm-2 control-label">Direccion:</label>
+        <div class="col-sm-10"><input type="text" class="form-control" id="direccion"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="observacion" class="col-sm-2 control-label">Cuéntanos mas de ti y/o de tu mascota:</label>
+        <div class="col-sm-10"><input type="text" class="form-control" id="observacion" placeholder="¿Que tipo de mascota tienes? ¿Como se llama?"></div>
+    </div>
+
+    <div class="col-sm-offset-2 col-sm-10" style="padding: 1px 1px 5px 1px">
+        <label class="radio-inline">
+            <input type="radio" name="radioU" id="radioU" value="option1"> Usuario
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="radioV" id="radioV" value="option2"> Veterinario
+        </label>
+    </div>
+    
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </div>
+    </div>
+</form>
+
+
+
+

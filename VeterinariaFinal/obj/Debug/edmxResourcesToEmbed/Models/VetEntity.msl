@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="VETERINARIAModelStoreContainer" CdmEntityContainer="VETERINARIAEntities">
+    <EntitySetMapping Name="categoria">
+      <EntityTypeMapping TypeName="VETERINARIAModel.categoria">
+        <MappingFragment StoreEntitySet="categoria">
+          <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+          <ScalarProperty Name="nombreCat" ColumnName="nombreCat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mascota">
+      <EntityTypeMapping TypeName="VETERINARIAModel.mascota">
+        <MappingFragment StoreEntitySet="mascota">
+          <ScalarProperty Name="id_mascota" ColumnName="id_mascota" />
+          <ScalarProperty Name="nom_mascota" ColumnName="nom_mascota" />
+          <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+          <ScalarProperty Name="peso" ColumnName="peso" />
+          <ScalarProperty Name="edad" ColumnName="edad" />
+          <ScalarProperty Name="color" ColumnName="color" />
+          <ScalarProperty Name="raza" ColumnName="raza" />
+          <ScalarProperty Name="id_vet" ColumnName="id_vet" />
+          <ScalarProperty Name="foto" ColumnName="foto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="producto">
+      <EntityTypeMapping TypeName="VETERINARIAModel.producto">
+        <MappingFragment StoreEntitySet="producto">
+          <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+          <ScalarProperty Name="nombreProd" ColumnName="nombreProd" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+          <ScalarProperty Name="img" ColumnName="img" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="servicios">
+      <EntityTypeMapping TypeName="VETERINARIAModel.servicios">
+        <MappingFragment StoreEntitySet="servicios">
+          <ScalarProperty Name="idServicios" ColumnName="idServicios" />
+          <ScalarProperty Name="nombreServicio" ColumnName="nombreServicio" />
+          <ScalarProperty Name="caracteristicas" ColumnName="caracteristicas" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipoUsuario">
+      <EntityTypeMapping TypeName="VETERINARIAModel.tipoUsuario">
+        <MappingFragment StoreEntitySet="tipoUsuario">
+          <ScalarProperty Name="idTipoUsuario" ColumnName="idTipoUsuario" />
+          <ScalarProperty Name="tipousuario1" ColumnName="tipousuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USUARIO">
+      <EntityTypeMapping TypeName="VETERINARIAModel.USUARIO">
+        <MappingFragment StoreEntitySet="USUARIO">
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="observación" ColumnName="observación" />
+          <ScalarProperty Name="idTipoUsuario" ColumnName="idTipoUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="veterinario">
+      <EntityTypeMapping TypeName="VETERINARIAModel.veterinario">
+        <MappingFragment StoreEntitySet="veterinario">
+          <ScalarProperty Name="foto" ColumnName="foto" />
+          <ScalarProperty Name="id_vet" ColumnName="id_vet" />
+          <ScalarProperty Name="nom_vet" ColumnName="nom_vet" />
+          <ScalarProperty Name="ape_vet" ColumnName="ape_vet" />
+          <ScalarProperty Name="dirección" ColumnName="dirección" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="especialidad" ColumnName="especialidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

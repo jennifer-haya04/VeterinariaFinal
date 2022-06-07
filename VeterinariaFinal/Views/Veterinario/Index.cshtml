@@ -1,0 +1,24 @@
+﻿@model IEnumerable<VeterinariaFinal.Models.veterinario>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3>.</h3>
+<h2>Nuestros Veterinarios</h2>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-6 col-md-6">
+            <div class="thumbnail" style="border-color:darkcyan">
+                <img src=@item.foto alt="Veterinario" width="300px" height="350px">
+                <div class="caption">
+                    <h3 class="text-info text-center">@item.nom_vet @item.ape_vet</h3>
+                    <p>Dirección: @item.dirección</p>
+                    <p>Teléfono: @item.telefono</p>
+                    <p>Especialidad: @item.especialidad</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

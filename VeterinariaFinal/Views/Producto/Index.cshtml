@@ -1,0 +1,23 @@
+﻿@model IEnumerable<VeterinariaFinal.Models.producto>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3>.</h3>
+<h2>Nuestros Productos</h2>
+
+<div class="row">
+
+    @foreach (var item in Model)
+    {
+    <div class="panel panel-default">
+        <div class="panel-heading">@item.nombreProd</div>
+        <div class="panel-body">
+            Panel content
+        </div>
+    </div>
+    }
+</div>
+
+
+

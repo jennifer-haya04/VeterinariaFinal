@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="VETERINARIAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="categoria">
+          <Key>
+            <PropertyRef Name="idCategoria" />
+          </Key>
+          <Property Name="idCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreCat" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="mascota">
+          <Key>
+            <PropertyRef Name="id_mascota" />
+          </Key>
+          <Property Name="id_mascota" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_mascota" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_nacimiento" Type="date" />
+          <Property Name="peso" Type="varchar" MaxLength="50" />
+          <Property Name="edad" Type="varchar" MaxLength="50" />
+          <Property Name="color" Type="varchar" MaxLength="50" />
+          <Property Name="raza" Type="varchar" MaxLength="50" />
+          <Property Name="id_vet" Type="int" />
+          <Property Name="foto" Type="image" />
+        </EntityType>
+        <EntityType Name="producto">
+          <Key>
+            <PropertyRef Name="idProducto" />
+          </Key>
+          <Property Name="idProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreProd" Type="varchar" MaxLength="200" />
+          <Property Name="precio" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="idCategoria" Type="int" />
+          <Property Name="img" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="servicios">
+          <Key>
+            <PropertyRef Name="idServicios" />
+          </Key>
+          <Property Name="idServicios" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreServicio" Type="varchar" MaxLength="500" />
+          <Property Name="caracteristicas" Type="varchar(max)" />
+          <Property Name="precio" Type="decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="tipoUsuario">
+          <Key>
+            <PropertyRef Name="idTipoUsuario" />
+          </Key>
+          <Property Name="idTipoUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipousuario" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="idusuario" />
+          </Key>
+          <Property Name="idusuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="20" />
+          <Property Name="password" Type="varchar" MaxLength="20" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="apellido" Type="varchar" MaxLength="100" />
+          <Property Name="direccion" Type="varchar" MaxLength="100" />
+          <Property Name="observación" Type="varchar" MaxLength="200" />
+          <Property Name="idTipoUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="veterinario">
+          <Key>
+            <PropertyRef Name="id_vet" />
+          </Key>
+          <Property Name="id_vet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_vet" Type="varchar" MaxLength="50" />
+          <Property Name="ape_vet" Type="varchar" MaxLength="50" />
+          <Property Name="dirección" Type="varchar" MaxLength="50" />
+          <Property Name="telefono" Type="varchar" MaxLength="20" />
+          <Property Name="especialidad" Type="varchar" MaxLength="100" />
+          <Property Name="foto" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <Association Name="FK__mascota__foto__29572725">
+          <End Role="veterinario" Type="Self.veterinario" Multiplicity="0..1" />
+          <End Role="mascota" Type="Self.mascota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="veterinario">
+              <PropertyRef Name="id_vet" />
+            </Principal>
+            <Dependent Role="mascota">
+              <PropertyRef Name="id_vet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__producto__idCate__5629CD9C">
+          <End Role="categoria" Type="Self.categoria" Multiplicity="0..1" />
+          <End Role="producto" Type="Self.producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categoria">
+              <PropertyRef Name="idCategoria" />
+            </Principal>
+            <Dependent Role="producto">
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USUARIO__idTipoU__4BAC3F29">
+          <End Role="tipoUsuario" Type="Self.tipoUsuario" Multiplicity="0..1" />
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoUsuario">
+              <PropertyRef Name="idTipoUsuario" />
+            </Principal>
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="idTipoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VETERINARIAModelStoreContainer">
+          <EntitySet Name="categoria" EntityType="Self.categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mascota" EntityType="Self.mascota" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="producto" EntityType="Self.producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="servicios" EntityType="Self.servicios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipoUsuario" EntityType="Self.tipoUsuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="veterinario" EntityType="Self.veterinario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__mascota__foto__29572725" Association="Self.FK__mascota__foto__29572725">
+            <End Role="veterinario" EntitySet="veterinario" />
+            <End Role="mascota" EntitySet="mascota" />
+          </AssociationSet>
+          <AssociationSet Name="FK__producto__idCate__5629CD9C" Association="Self.FK__producto__idCate__5629CD9C">
+            <End Role="categoria" EntitySet="categoria" />
+            <End Role="producto" EntitySet="producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USUARIO__idTipoU__4BAC3F29" Association="Self.FK__USUARIO__idTipoU__4BAC3F29">
+            <End Role="tipoUsuario" EntitySet="tipoUsuario" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VETERINARIAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="categoria">
+          <Key>
+            <PropertyRef Name="idCategoria" />
+          </Key>
+          <Property Name="idCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreCat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="producto" Relationship="Self.FK__producto__idCate__5629CD9C" FromRole="categoria" ToRole="producto" />
+        </EntityType>
+        <EntityType Name="mascota">
+          <Key>
+            <PropertyRef Name="id_mascota" />
+          </Key>
+          <Property Name="id_mascota" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_mascota" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
+          <Property Name="peso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="edad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="raza" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_vet" Type="Int32" />
+          <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="veterinario" Relationship="Self.FK__mascota__foto__29572725" FromRole="mascota" ToRole="veterinario" />
+        </EntityType>
+        <EntityType Name="producto">
+          <Key>
+            <PropertyRef Name="idProducto" />
+          </Key>
+          <Property Name="idProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreProd" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="precio" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="idCategoria" Type="Int32" />
+          <Property Name="img" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="categoria" Relationship="Self.FK__producto__idCate__5629CD9C" FromRole="producto" ToRole="categoria" />
+        </EntityType>
+        <EntityType Name="servicios">
+          <Key>
+            <PropertyRef Name="idServicios" />
+          </Key>
+          <Property Name="idServicios" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreServicio" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="caracteristicas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="precio" Type="Decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="tipoUsuario">
+          <Key>
+            <PropertyRef Name="idTipoUsuario" />
+          </Key>
+          <Property Name="idTipoUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipousuario1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.FK__USUARIO__idTipoU__4BAC3F29" FromRole="tipoUsuario" ToRole="USUARIO" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="idusuario" />
+          </Key>
+          <Property Name="idusuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="observación" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="idTipoUsuario" Type="Int32" />
+          <NavigationProperty Name="tipoUsuario" Relationship="Self.FK__USUARIO__idTipoU__4BAC3F29" FromRole="USUARIO" ToRole="tipoUsuario" />
+        </EntityType>
+        <EntityType Name="veterinario">
+          <Key>
+            <PropertyRef Name="id_vet" />
+          </Key>
+          <Property Name="id_vet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_vet" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ape_vet" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dirección" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="especialidad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="mascota" Relationship="Self.FK__mascota__foto__29572725" FromRole="veterinario" ToRole="mascota" />
+          <Property Name="foto" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK__producto__idCate__5629CD9C">
+          <End Role="categoria" Type="Self.categoria" Multiplicity="0..1" />
+          <End Role="producto" Type="Self.producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categoria">
+              <PropertyRef Name="idCategoria" />
+            </Principal>
+            <Dependent Role="producto">
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__mascota__foto__29572725">
+          <End Role="veterinario" Type="Self.veterinario" Multiplicity="0..1" />
+          <End Role="mascota" Type="Self.mascota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="veterinario">
+              <PropertyRef Name="id_vet" />
+            </Principal>
+            <Dependent Role="mascota">
+              <PropertyRef Name="id_vet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USUARIO__idTipoU__4BAC3F29">
+          <End Role="tipoUsuario" Type="Self.tipoUsuario" Multiplicity="0..1" />
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoUsuario">
+              <PropertyRef Name="idTipoUsuario" />
+            </Principal>
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="idTipoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VETERINARIAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="categoria" EntityType="Self.categoria" />
+          <EntitySet Name="mascota" EntityType="Self.mascota" />
+          <EntitySet Name="producto" EntityType="Self.producto" />
+          <EntitySet Name="servicios" EntityType="Self.servicios" />
+          <EntitySet Name="tipoUsuario" EntityType="Self.tipoUsuario" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
+          <EntitySet Name="veterinario" EntityType="Self.veterinario" />
+          <AssociationSet Name="FK__producto__idCate__5629CD9C" Association="Self.FK__producto__idCate__5629CD9C">
+            <End Role="categoria" EntitySet="categoria" />
+            <End Role="producto" EntitySet="producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__mascota__foto__29572725" Association="Self.FK__mascota__foto__29572725">
+            <End Role="veterinario" EntitySet="veterinario" />
+            <End Role="mascota" EntitySet="mascota" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USUARIO__idTipoU__4BAC3F29" Association="Self.FK__USUARIO__idTipoU__4BAC3F29">
+            <End Role="tipoUsuario" EntitySet="tipoUsuario" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VETERINARIAModelStoreContainer" CdmEntityContainer="VETERINARIAEntities">
+          <EntitySetMapping Name="categoria">
+            <EntityTypeMapping TypeName="VETERINARIAModel.categoria">
+              <MappingFragment StoreEntitySet="categoria">
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="nombreCat" ColumnName="nombreCat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mascota">
+            <EntityTypeMapping TypeName="VETERINARIAModel.mascota">
+              <MappingFragment StoreEntitySet="mascota">
+                <ScalarProperty Name="id_mascota" ColumnName="id_mascota" />
+                <ScalarProperty Name="nom_mascota" ColumnName="nom_mascota" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="peso" ColumnName="peso" />
+                <ScalarProperty Name="edad" ColumnName="edad" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="raza" ColumnName="raza" />
+                <ScalarProperty Name="id_vet" ColumnName="id_vet" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="producto">
+            <EntityTypeMapping TypeName="VETERINARIAModel.producto">
+              <MappingFragment StoreEntitySet="producto">
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="nombreProd" ColumnName="nombreProd" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="img" ColumnName="img" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="servicios">
+            <EntityTypeMapping TypeName="VETERINARIAModel.servicios">
+              <MappingFragment StoreEntitySet="servicios">
+                <ScalarProperty Name="idServicios" ColumnName="idServicios" />
+                <ScalarProperty Name="nombreServicio" ColumnName="nombreServicio" />
+                <ScalarProperty Name="caracteristicas" ColumnName="caracteristicas" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipoUsuario">
+            <EntityTypeMapping TypeName="VETERINARIAModel.tipoUsuario">
+              <MappingFragment StoreEntitySet="tipoUsuario">
+                <ScalarProperty Name="idTipoUsuario" ColumnName="idTipoUsuario" />
+                <ScalarProperty Name="tipousuario1" ColumnName="tipousuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIO">
+            <EntityTypeMapping TypeName="VETERINARIAModel.USUARIO">
+              <MappingFragment StoreEntitySet="USUARIO">
+                <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="observación" ColumnName="observación" />
+                <ScalarProperty Name="idTipoUsuario" ColumnName="idTipoUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="veterinario">
+            <EntityTypeMapping TypeName="VETERINARIAModel.veterinario">
+              <MappingFragment StoreEntitySet="veterinario">
+                <ScalarProperty Name="foto" ColumnName="foto" />
+                <ScalarProperty Name="id_vet" ColumnName="id_vet" />
+                <ScalarProperty Name="nom_vet" ColumnName="nom_vet" />
+                <ScalarProperty Name="ape_vet" ColumnName="ape_vet" />
+                <ScalarProperty Name="dirección" ColumnName="dirección" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="especialidad" ColumnName="especialidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
