@@ -1,21 +1,78 @@
-﻿@model IEnumerable<VeterinariaFinal.Models.producto>
+﻿
+@model IEnumerable<VeterinariaFinal.Models.producto>
 @{
     ViewBag.Title = "Index";
 }
 
 <h3>.</h3>
-<h2>Nuestros Productos</h2>
+<table style="width: 100%" border="0">
+    <tr>
+        <td style="width: 90%">
+            <h2>Nuestros Productos</h2>
+        </td>
+        <td style="width: 10%">
+            @Html.ActionLink("Nuevo", "Crear", "Producto", new { @class = "btn btn-success" })
+        </td>
+    </tr>
+</table>
 
 <div class="row">
 
     @foreach (var item in Model)
     {
-    <div class="panel panel-default">
-        <div class="panel-heading">@item.nombreProd</div>
-        <div class="panel-body">
-            Panel content
+        <div class="col-sm-8 col-md-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading" style="text-align: center">
+                    <div style="display: flex">
+                        <table style="width: 100%" border="0">
+                            <tr>
+                                <td style="width: 90%">
+                                    @item.nombreProd
+                                </td>
+                                <td style="width: 10%">
+                                    <div class="dropdown">
+                                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                            <li><a href="@Url.Action("Editar","Producto", new { id = item.idProducto})">Editar</a></li>
+                                            <li><a href="@Url.Action("Eliminar", "Producto", new { id = item.idProducto})">Eliminar</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <img src="@item.img" width="200px" height="150px" />
+
+                    <div>
+                        <table style="width: 100%" border="0">
+                            <tr>
+                                <td height="5px"></td>
+                            </tr>
+                            <tr>
+                                <td style="width: 50%" align="right" valign="middle">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-report-money" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00abfb" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
+                                        <rect x="9" y="3" width="6" height="4" rx="2" />
+                                        <path d="M14 11h-2.5a1.5 1.5 0 0 0 0 3h1a1.5 1.5 0 0 1 0 3h-2.5" />
+                                        <path d="M12 17v1m0 -8v1" />
+                                    </svg>
+                                </td>
+                                <td style="width: 50%" valign="top">
+                                    @item.precio
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+
+                </div>
+            </div>
         </div>
-    </div>
     }
 </div>
 

@@ -1,0 +1,30 @@
+﻿@model VeterinariaFinal.Models.producto
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h3>.</h3>
+<h2>Editar producto: </h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.HiddenFor(model => model.idProducto)
+    </div>
+    <div>
+        @Html.LabelFor(model => model.nombreProd)
+        @Html.EditorFor(model => model.nombreProd, new { @class = "form-control" })
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.precio)
+        @Html.EditorFor(model => model.precio, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Actualizar" class="btn btn-primary" />
+    </div>
+}
+
+
